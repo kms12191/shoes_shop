@@ -5,6 +5,9 @@ import Product from './components/Product'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Home from './components/Home'
 import Detail from './components/Detail'
+import Footer from './components/Footer'
+import Cart from './components/Cart'
+import About from './components/About'
 
 function App() {
   const [shoes, setShoes] = useState(data)
@@ -36,14 +39,17 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home shoes={shoes} />}></Route>
+        <Route path="/" element={<Home shoes={shoes} setShoes={setShoes} />}></Route>
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
-        <Route path="/about" element={<div>About 페이지 <Outlet></Outlet></div>}>
+        <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버입니다</div>} />
           <Route path="location" element={<div>위치입니다</div>} />
         </Route>
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<div>페이지를 찾을 수 없습니다.</div>} />
       </Routes>
+
+      <Footer />
 
     </div>
   )
