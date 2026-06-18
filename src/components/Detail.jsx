@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import TabContent from './TabContent'
+import styled from 'styled-components'
+
+const Box = styled.div`
+    padding: 20px 0;
+    color: gray;
+`;
+
+const YellowBtn = styled.button`
+    color: white;
+    font-size: 30px;
+    width: 100%;
+    padding : 100px;
+    border: 1px solid #ccc;
+    background-image:url("https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D   w=1112&q=80");
+    background-size: cover;
+    background-position: center;
+`;
 
 const Detail = (props) => {
     const { shoes } = props
@@ -11,20 +28,20 @@ const Detail = (props) => {
     const [fade, setFade] = useState('')
     let selproduct = shoes.find(x => x.id == parseInt(id))
 
-    useEffect(()=>{
-        const timer = setTimeout(()=>{
+    useEffect(() => {
+        const timer = setTimeout(() => {
             setAlert(false)
         }, 2000)
-        return ()=>{
+        return () => {
             clearTimeout(timer)
         }
     }, [])
 
-    useEffect(()=>{
-        const pgTimer = setTimeout(()=>{
+    useEffect(() => {
+        const pgTimer = setTimeout(() => {
             setFade('end')
         }, 50)
-        return ()=>{
+        return () => {
             setFade('')
             clearTimeout(pgTimer)
         }
@@ -38,6 +55,10 @@ const Detail = (props) => {
                     2초이내 구매시 할인
                 </div>
             }
+
+            <Box>
+                <YellowBtn>지금 구매하면 10% 할인</YellowBtn>
+            </Box>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="w-full">
@@ -93,7 +114,7 @@ const Detail = (props) => {
                     }
                 })()
             } */}
-            <TabContent tab={tab} />
+            <TabContent tab={tab} shoes={shoes} />
 
 
 
